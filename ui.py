@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class ToDoApp:
     def __init__(self, root, task_manager):
         self.root = root
@@ -28,6 +29,9 @@ class ToDoApp:
 
     def on_delete(self):
         index = self.task_listbox.curselection()
+        if len(index) == 0: # check if the tuple above is empty, avoiding IndexErrors
+            self.status_label.configure(text="Please select a task first")
+            return
         self.task_manager.delete_task(index[0]) # curselection returns a tuple, not an index
         self.refresh_list()
         self.status_label.configure(text="Task deleted")
