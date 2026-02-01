@@ -6,6 +6,8 @@ class TaskManager:
         self.task_list = []
     def add_task(self,text):
         self.task_list.append(text)
+    def delete_task(self,index):
+        self.task_list.pop(index)
 
 
 if __name__ == '__main__':
