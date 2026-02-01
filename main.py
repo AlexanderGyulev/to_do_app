@@ -1,13 +1,20 @@
 import tkinter as tk
 from ui import ToDoApp
 
+
 class TaskManager:
+
     def __init__(self):
         self.task_list = []
+
     def add_task(self,text):
         self.task_list.append(text)
+
     def delete_task(self,index):
         self.task_list.pop(index)
+
+    def get_tasks(self):
+        return self.task_list
 
 
 if __name__ == '__main__':

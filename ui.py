@@ -24,11 +24,16 @@ class ToDoApp:
         text = self.text_entry.get()
         self.task_manager.add_task(text)
         self.refresh_list()
+        self.status_label.configure(text="Task added")
 
     def on_delete(self):
         index = self.task_listbox.curselection()
         self.task_manager.delete_task(index[0]) # curselection returns a tuple, not an index
         self.refresh_list()
+        self.status_label.configure(text="Task deleted")
 
     def refresh_list(self):
-        pass
+        self.task_listbox.delete(0, tk.END)
+        for task in self.task_manager.get_tasks():
+            self.task_listbox.insert(tk.END, task)
+
