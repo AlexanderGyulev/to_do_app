@@ -15,7 +15,7 @@ class ToDoApp:
         self.add_button = tk.Button(self.root, text="Add a task", command=self.on_add)
         self.add_button.pack()
         self.task_listbox = tk.Listbox(self.root)
-        self.task_listbox.pack()
+        self.task_listbox.pack(fill="both", expand=True)
         self.delete_button = tk.Button(self.root, text="Delete a task", command=self.on_delete)
         self.delete_button.pack()
         self.status_label = tk.Label(self.root, text="")
@@ -23,6 +23,9 @@ class ToDoApp:
 
     def on_add(self):
         text = self.text_entry.get()
+        if len(text) == 0: # check if the text_entry contains any text
+            self.status_label.configure(text="Please add a task first")
+            return
         self.task_manager.add_task(text)
         self.refresh_list()
         self.status_label.configure(text="Task added")
