@@ -12,15 +12,19 @@ class ToDoApp:
 
     def build_ui(self):
         self.text_entry = tk.Entry(self.root)
-        self.text_entry.pack()
+        self.text_entry.pack(fill="both")
         self.add_button = tk.Button(self.root, text="Add a task", command=self.on_add)
         self.add_button.pack()
         self.task_listbox = tk.Listbox(self.root)
         self.task_listbox.pack(fill="both", expand=True)
         self.delete_button = tk.Button(self.root, text="Delete a task", command=self.on_delete)
-        self.delete_button.pack()
+        self.delete_button.pack(side="left", padx = 5)
+        self.clear_all_button = tk.Button(self.root, text="Clear All", command = self.on_clear)
+        self.clear_all_button.pack(side="right", padx = 5)
         self.status_label = tk.Label(self.root, text="")
         self.status_label.pack()
+        self.button_frame = tk.Frame(self.root)
+        self.button_frame.pack()
 
     def on_add(self):
         text = self.text_entry.get()
@@ -39,6 +43,11 @@ class ToDoApp:
         self.task_manager.delete_task(index[0]) # curselection returns a tuple, not an index
         self.refresh_list()
         self.status_label.configure(text="Task deleted")
+
+    def on_clear(self):
+        self.task_manager.clear_all_tasks()
+        self.status_label.configure(text="All tasks deleted")
+        self.refresh_list()
 
     def refresh_list(self):
         self.task_listbox.delete(0, tk.END)

@@ -29,6 +29,10 @@ class TaskManager:
         self.task_list.pop(index)
         self.save_tasks()
 
+    def clear_all_tasks(self):
+        self.task_list = []
+        self.save_tasks()
+
     def get_tasks(self):
         return self.task_list
 
