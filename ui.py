@@ -8,6 +8,7 @@ class ToDoApp:
         self.root.title("To Do App")
         self.root.geometry("600x600")
         self.build_ui()
+        self.refresh_list()
 
     def build_ui(self):
         self.text_entry = tk.Entry(self.root)
@@ -24,7 +25,7 @@ class ToDoApp:
     def on_add(self):
         text = self.text_entry.get()
         if len(text) == 0: # check if the text_entry contains any text
-            self.status_label.configure(text="Please add a task first")
+            self.status_label.configure(text="Task cannot be empty")
             return
         self.task_manager.add_task(text)
         self.refresh_list()
