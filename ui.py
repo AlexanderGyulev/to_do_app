@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.messagebox
 
 
 class ToDoApp:
@@ -45,9 +46,13 @@ class ToDoApp:
         self.status_label.configure(text="Task deleted")
 
     def on_clear(self):
-        self.task_manager.clear_all_tasks()
-        self.status_label.configure(text="All tasks deleted")
-        self.refresh_list()
+        confirmation = tkinter.messagebox.askyesno(title="Clear All", message="Clear all tasks?")
+        if confirmation:
+            self.task_manager.clear_all_tasks()
+            self.status_label.configure(text="All tasks deleted")
+            self.refresh_list()
+        else:
+            self.status_label.configure(text="The deletion of all tasks has been cancelled")
 
     def refresh_list(self):
         self.task_listbox.delete(0, tk.END)
