@@ -28,7 +28,7 @@ class ToDoApp:
         self.button_frame.pack()
 
     def on_add(self):
-        text = self.text_entry.get()
+        text = self.text_entry.get().strip()
         if len(text) == 0: # check if the text_entry contains any text
             self.status_label.configure(text="Task cannot be empty")
             return
